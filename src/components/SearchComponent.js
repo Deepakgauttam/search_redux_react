@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { searchData } from '../actions/dataActions';
 
 const SearchComponent = () => {
   const dispatch = useDispatch();
-  const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value;
     dispatch(searchData(searchTerm));
   };
 
@@ -15,10 +15,8 @@ const SearchComponent = () => {
       <input 
         type="text" 
         placeholder="Search..." 
-        value={searchTerm} 
-        onChange={(e) => setSearchTerm(e.target.value)} 
+        onChange={handleSearch} 
       />
-      <button onClick={handleSearch}>Search</button>
     </div>
   );
 };
